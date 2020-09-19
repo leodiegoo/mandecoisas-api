@@ -10,7 +10,7 @@
     "plugin:jest/recommended"
   ],
   "parserOptions": {
-    "ecmaVersion": 2018,
+    "ecmaVersion": 2020,
     "sourceType": "module",
     "ecmaFeatures": {
       "jsx": true
@@ -56,9 +56,14 @@
     "react/no-unescaped-entities": [
       "error",
       {
-        "forbid": [
-          { "char": ">", "alternatives": ["&gt;"] },
-          { "char": "}", "alternatives": ["&#125;"] }
+        "forbid": [{
+            "char": ">",
+            "alternatives": ["&gt;"]
+          },
+          {
+            "char": "}",
+            "alternatives": ["&#125;"]
+          }
         ]
       }
     ],
