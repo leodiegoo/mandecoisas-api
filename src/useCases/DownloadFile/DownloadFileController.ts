@@ -12,5 +12,7 @@ export class DownloadFileController {
     response.attachment(file.original_name);
     response.contentType(file.mimetype);
     fileStream.pipe(response);
+
+    return response;
   }
 }
