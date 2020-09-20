@@ -1,8 +1,8 @@
 module.exports = {
-  exclude: ["test/**/*"],
+  exclude: ['test/**/*'],
   excludeExternals: true,
-  mode: "file",
-  name: "node-ts-starter-template",
-  out: "./docs",
-  theme: "default"
+  mode: 'file',
+  name: 'node-ts-starter-template',
+  out: './docs',
+  theme: 'default'
 };

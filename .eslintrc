@@ -31,18 +31,12 @@
     "jest/globals": true
   },
   "rules": {
+    "camelcase": "off",
     "import/prefer-default-export": ["off"],
     "no-restricted-syntax": ["off", "ForOfStatement"],
     "@typescript-eslint/explicit-function-return-type": ["off"],
-    "@typescript-eslint/explicit-member-accessibility": [
-      "error",
-      {
-        "accessibility": "explicit",
-        "overrides": {
-          "constructors": "no-public"
-        }
-      }
-    ],
+    "no-useless-constructor": "off",
+    "class-methods-use-this": "off",
     "import/extensions": [
       "error",
       "ignorePackages",
