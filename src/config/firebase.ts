@@ -9,8 +9,9 @@ firebase.initializeApp({
 });
 
 const storage = firebase.storage();
+const bucket = storage.bucket();
 
 const realtime = firebase.database();
 const firestore = firebase.firestore();
 
-export { storage, firebase, realtime, firestore, credentials };
+export { storage, firebase, realtime, firestore, credentials, bucket };
