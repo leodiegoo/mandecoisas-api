@@ -23,7 +23,8 @@ export class GetTransferUseCase {
     const files = files_ref.docs.map((file) => {
       const file_ref = file.data() as File;
       const newFile: File = {
-        ...file_ref
+        ...file_ref,
+        id: file.id
       };
       return newFile;
     });
