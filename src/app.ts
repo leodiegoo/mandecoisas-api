@@ -1,4 +1,4 @@
-import express, { Request, Error, NextFunction, Response } from 'express';
+import express, { Request, NextFunction, Response } from 'express';
 import 'express-async-errors';
 import morgan from 'morgan';
 import helmet from 'helmet';

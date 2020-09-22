@@ -3,6 +3,7 @@ import { addMinutes } from 'date-fns';
 import { zonedTimeToUtc } from 'date-fns-tz';
 import { firestore } from '../../config/firebase';
 import { IUploadFileRequestDTO, IUploadFileResponseDTO } from './UploadFileDTO';
+import credentials from '../../config/firebase.credentials.json';
 
 export class UploadFileUseCase {
   async execute(uploadDTO: IUploadFileRequestDTO): Promise<IUploadFileResponseDTO> {
@@ -25,7 +26,7 @@ export class UploadFileUseCase {
           original_name: file.originalname,
           encoding: file.encoding,
           mimetype: file.mimetype,
-          path: file.path,
+          path: `https://${credentials.storageBucket}/${file.path}`,
           file_name: file.filename,
           id_transfer
         });
