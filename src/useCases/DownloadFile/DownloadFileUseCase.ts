@@ -1,7 +1,7 @@
 import AppError from '../../errors/AppError';
 import { firestore, storage } from '../../config/firebase';
 import { IDownloadFileRequestDTO, IDownloadFileResponseDTO } from './DownloadFileDTO';
-import { File } from '../../entities/File';
+import File from '../../entities/File';
 
 export class DownloadFileUseCase {
   public async execute(dto: IDownloadFileRequestDTO): Promise<IDownloadFileResponseDTO> {
