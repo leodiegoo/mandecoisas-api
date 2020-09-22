@@ -10,9 +10,13 @@ export interface IFileRequestDTO {
   mimetype: string;
   path: string;
   filename: string;
+  size: number;
 }
 
 export interface IUploadFileResponseDTO {
   type_id: string;
   id: string | number;
+  size: number;
+  total_files: number;
+  expires_in: Date;
 }

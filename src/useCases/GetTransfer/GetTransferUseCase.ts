@@ -1,12 +1,14 @@
 import AppError from '../../errors/AppError';
-import { firestore, storage } from '../../config/firebase';
+import { firestore } from '../../config/firebase';
 import { IGetTransferRequestDTO, IGetTransferResponseDTO } from './GetTransferDTO';
-import { File } from '../../entities/File';
+import File from '../../entities/File';
+import Transfer from '../../entities/Transfer';
 
 export class GetTransferUseCase {
   public async execute(dto: IGetTransferRequestDTO): Promise<IGetTransferResponseDTO> {
     const transfer_ref = await firestore.collection('transfers').doc(dto.transfer).get();
-    const transfer_data = transfer_ref.data();
+    const transfer_data = transfer_ref.data() as Transfer;
+    transfer_data.id = dto.transfer;
 
     if (!transfer_data) {
       throw new AppError('Não encontrado', 404);
@@ -18,22 +20,14 @@ export class GetTransferUseCase {
       throw new AppError('Não encontrado', 404);
     }
 
-    // const bucket = storage.bucket();
     const files = files_ref.docs.map((file) => {
       const file_ref = file.data() as File;
-      return {
-        file_id: file.id,
-        file_path: file_ref.path
+      const newFile: File = {
+        ...file_ref
       };
+      return newFile;
     });
 
-    return { transfer_id: dto.transfer, files };
-    // files.forEach((file) => {
-    //   const file_ref = file.data() as File;
-    //   const file_storage_ref = bucket.file(file_ref.path);
-    //   console.log(file_storage_ref);
-    // });
-
-    // return { files };
+    return { transfer: transfer_data, files };
   }
 }

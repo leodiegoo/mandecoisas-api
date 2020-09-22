@@ -1,11 +1,11 @@
+import File from '../../entities/File';
+import Transfer from '../../entities/Transfer';
+
 export interface IGetTransferRequestDTO {
   transfer: string;
 }
 
 export interface IGetTransferResponseDTO {
-  transfer_id: string;
-  files: {
-    file_id: string;
-    file_path: string;
-  }[];
+  transfer: Transfer;
+  files: File[];
 }

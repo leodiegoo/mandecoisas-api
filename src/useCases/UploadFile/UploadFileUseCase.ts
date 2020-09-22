@@ -11,10 +11,15 @@ export class UploadFileUseCase {
     const expires_in = addMinutes(datetime, 10);
     const id_transfer = id({ length: 6, charSet: uploadDTO.type_id === 'string' ? 'alpha' : 'num' });
 
+    const total_files = uploadDTO.files.length;
+    const size = uploadDTO.files.reduce((total, file) => total + file.size, 0);
+
     await firestore.collection('/transfers').doc(id_transfer).create({
       type_id: uploadDTO.type_id,
       datetime,
-      expires_in
+      expires_in,
+      total_files,
+      size
     });
 
     uploadDTO.files.forEach((file) => {
@@ -28,13 +33,17 @@ export class UploadFileUseCase {
           mimetype: file.mimetype,
           path: `https://${credentials.storageBucket}/${file.path}`,
           file_name: file.filename,
-          id_transfer
+          id_transfer,
+          size: file.size
         });
     });
 
     return {
       id: id_transfer,
-      type_id: uploadDTO.type_id
+      type_id: uploadDTO.type_id,
+      total_files,
+      size,
+      expires_in
     };
   }
 }

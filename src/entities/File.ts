@@ -1,4 +1,6 @@
-export class File {
+export default class File {
+  public id?: string;
+
   public field_name: string;
 
   public original_name: string;
@@ -13,7 +15,7 @@ export class File {
 
   public id_transfer: string;
 
-  public id?: string;
+  public size: number;
 
   constructor(props: File) {
     Object.assign(this, props);
