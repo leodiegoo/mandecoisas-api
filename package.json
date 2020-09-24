@@ -28,7 +28,6 @@
     "format": "prettier --ignore-path .eslintignore --write \"**/*.{js,ts,jsx,tsx}\" -c",
     "lint": "eslint \"**/*.{ts,tsx,js,jsx}\" --fix",
     "postversion": "git push && git push --tags && npm run clean",
-    "prepare": "",
     "prepublishOnly": "npm run test && npm run lint",
     "release:alpha": "npm version prerelease --preid alpha -m \" build: :bookmark:%s\"",
     "release:beta": "npm version prerelease --preid beta -m \"build: :bookmark: %s\"",
@@ -37,6 +36,7 @@
     "release:major": "npm version major -m \"build: :bookmark: %s\"",
     "start": "node ./dist/src/server.js",
     "setup": "npm install && ts-node ./setup.ts",
+    "postinstall": "npm build",
     "test": "jest --coverage -t",
     "test:watch": "jest --watch-all -t",
     "version": "git add -A src"
