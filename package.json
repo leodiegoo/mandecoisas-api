@@ -35,7 +35,7 @@
     "release:patch": "npm version patch -m \"build: :bookmark: %s\"",
     "release:minor": "npm version minor -m \"build: :bookmark: %s\"",
     "release:major": "npm version major -m \"build: :bookmark: %s\"",
-    "start": "node dist/src/server.js",
+    "start": "node ./dist/src/server.js",
     "setup": "npm install && ts-node ./setup.ts",
     "test": "jest --coverage -t",
     "test:watch": "jest --watch-all -t",
