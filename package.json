@@ -36,7 +36,6 @@
     "release:major": "npm version major -m \"build: :bookmark: %s\"",
     "start": "node ./dist/src/server.js",
     "setup": "npm install && ts-node ./setup.ts",
-    "postinstall": "npm run build",
     "test": "jest --coverage -t",
     "test:watch": "jest --watch-all -t",
     "version": "git add -A src"
