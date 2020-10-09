@@ -1,7 +1,11 @@
-export default class File {
-  public datetime: Date;
+import firebase from 'firebase-admin';
 
-  public expires_in: Date;
+export default class File {
+  public datetime: firebase.firestore.Timestamp;
+
+  public expires_in: firebase.firestore.Timestamp;
+
+  public expired?: boolean;
 
   public size: number;
 

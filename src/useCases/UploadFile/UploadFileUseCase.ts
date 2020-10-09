@@ -6,10 +6,15 @@ import { IUploadFileRequestDTO, IUploadFileResponseDTO } from './UploadFileDTO';
 import credentials from '../../config/firebase.credentials.json';
 
 export class UploadFileUseCase {
-  async execute(uploadDTO: IUploadFileRequestDTO): Promise<IUploadFileResponseDTO> {
+  async execute(
+    uploadDTO: IUploadFileRequestDTO
+  ): Promise<IUploadFileResponseDTO> {
     const datetime = zonedTimeToUtc(new Date(), '-3');
     const expires_in = addMinutes(datetime, 10);
-    const id_transfer = id({ length: 6, charSet: uploadDTO.type_id === 'string' ? 'alpha' : 'num' });
+    const id_transfer = id({
+      length: 6,
+      charSet: uploadDTO.type_id === 'string' ? 'alpha' : 'num'
+    });
 
     const total_files = uploadDTO.files.length;
     const size = uploadDTO.files.reduce((total, file) => total + file.size, 0);
@@ -19,7 +24,8 @@ export class UploadFileUseCase {
       datetime,
       expires_in,
       total_files,
-      size
+      size,
+      expired: false
     });
 
     uploadDTO.files.forEach((file) => {
@@ -34,7 +40,8 @@ export class UploadFileUseCase {
           path: `https://${credentials.storageBucket}/${file.path}`,
           file_name: file.filename,
           id_transfer,
-          size: file.size
+          size: file.size,
+          expired: false
         });
     });
 

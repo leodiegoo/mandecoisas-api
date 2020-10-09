@@ -17,6 +17,8 @@ export default class File {
 
   public size: number;
 
+  public expired?: boolean;
+
   constructor(props: File) {
     Object.assign(this, props);
   }
