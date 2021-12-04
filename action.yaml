@@ -1,2 +1,0 @@
-- name: CapRover Deploy
-  uses: AlexxNB/caprover-action@v1
